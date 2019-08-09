@@ -1,0 +1,65 @@
+#include <iostream>
+#include<string>
+
+using namespace std;
+typedef struct node {
+    string data;
+    struct node *ptr;
+}Listnode;
+Listnode *head=nullptr;
+void printList(Listnode * node);
+int main()
+{
+    int choice;
+    while(true){
+        cout<<"1---> enter a node  \n2--->view list \n 3---> exit"<<endl;
+        cin>>choice;
+        switch (choice) {
+        case 1:
+        {
+            string input;
+            Listnode *one_way_node = (Listnode*)malloc(sizeof(Listnode));
+            cout<<"Enter the value in the node"<<endl;
+            cin>>input;
+            one_way_node->data=input;
+            one_way_node->ptr =NULL;
+            if(!head){
+                head= one_way_node;
+            }
+            else{
+                Listnode* pointer = head;
+                while(pointer->ptr != NULL){
+                    pointer=pointer->ptr;
+
+               }pointer->ptr=one_way_node;
+            }
+        }
+            break;
+        case 2:
+        {
+            printList(head);
+        }
+            break;
+        case 3:
+            exit(0);
+            break;
+        default:
+            break;
+            }
+    }
+}
+void printList(Listnode* node)
+{
+    cout<<"here\n";
+    Listnode* read_pointer = node;
+
+    if(read_pointer){
+        while(read_pointer){
+            cout<<read_pointer->data<<endl;
+            read_pointer= read_pointer->ptr;
+        }
+     }
+     else{
+         cout<<"empty list"<<endl;
+     }
+}
